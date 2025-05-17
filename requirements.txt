@@ -1,0 +1,53 @@
+# === Core Machine Learning ===
+torch>=1.13.0
+torchvision>=0.14.0
+torchaudio>=0.13.0
+
+# === Distributed Systems & Communication ===
+mpi4py>=3.1.4          # MPI interface for Python
+pyzmq>=25.1.0          # ZeroMQ bindings
+zeromq>=4.3.4          # Messaging layer
+grpcio>=1.54.0         # Optional: gRPC for microservice simulation
+
+# === Simulation Tools ===
+simpy>=4.0.1           # Process-based discrete-event simulation framework
+networkx>=3.1          # Network graph modeling (for node topology)
+toposort>=1.7          # Topological sorting of node dependencies
+
+# === Metrics & Monitoring ===
+prometheus-client>=0.16.0
+psutil>=5.9.5          # For tracking CPU/RAM/network usage
+speedtest-cli>=2.1.3   # Simulate or log bandwidth capacity (optional)
+
+# === Logging, Debugging & Profiling ===
+loguru>=0.7.2
+tqdm>=4.66.1
+rich>=13.5.2           # Colored CLI output and logging
+line-profiler>=4.1.1   # Optional: for profiling specific functions
+
+# === Visualization & Reporting ===
+matplotlib>=3.8.0
+seaborn>=0.12.2
+pandas>=2.1.3
+plotly>=5.18.0         # Interactive plots (for future dashboard dev)
+
+# === Web & API Layer (Planned Phase) ===
+flask>=2.3.2
+fastapi>=0.110.0
+uvicorn>=0.29.0
+
+# === Environment & System Tools ===
+python-dotenv>=1.0.1   # For loading environment variables
+py-cpuinfo>=9.0.0
+click>=8.1.7           # CLI interfaces
+
+# === Container & Deployment Support ===
+docker>=7.0.0
+kubernetes>=26.1.0     # Kubernetes client API
+
+# === Development & Testing ===
+pytest>=7.4.3
+black>=24.3.0
+mypy>=1.8.0
+isort>=5.13.2
+pre-commit>=3.6.2
