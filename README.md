@@ -120,10 +120,3 @@ Brown University & Broward College
 ---
 
 > DDLSim bridges the gap between theory and real-world AI infrastructure challenges, empowering global researchers to simulate, test, and optimize distributed systems at no cost.
-
-
-
-
-هل ترغب أن أرفعه فورًا إلى مستودعك؟  
-أو أرسله لك كملف `.md` مضغوط؟
-
