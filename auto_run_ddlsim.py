@@ -29,7 +29,7 @@ def simulate_network(epoch, rank):
     time.sleep(delay)
     return True
 
-def train(rank, world_size, log_file):
+def train(rank, world_size, log_path):
     setup(rank, world_size)
     device = torch.device("cpu")
     model = SimpleModel().to(device)
@@ -37,20 +37,22 @@ def train(rank, world_size, log_file):
     optimizer = optim.SGD(ddp_model.parameters(), lr=0.01)
     loss_fn = nn.MSELoss()
 
-    for epoch in range(1, 6):
-        if not simulate_network(epoch, rank):
-            continue
-        inputs = torch.randn(32, 10).to(device)
-        targets = torch.randn(32, 10).to(device)
-        optimizer.zero_grad()
-        outputs = ddp_model(inputs)
-        loss = loss_fn(outputs, targets)
-        loss.backward()
-        optimizer.step()
+    # افتح ملف اللوج لكل نود بشكل منفصل
+    with open(f"{log_path}_node{rank}.log", "w") as log_file:
+        for epoch in range(1, 6):
+            if not simulate_network(epoch, rank):
+                continue
+            inputs = torch.randn(32, 10).to(device)
+            targets = torch.randn(32, 10).to(device)
+            optimizer.zero_grad()
+            outputs = ddp_model(inputs)
+            loss = loss_fn(outputs, targets)
+            loss.backward()
+            optimizer.step()
 
-        if rank == 0:
-            log_file.write(f"Epoch {epoch} | Loss: {loss.item():.4f}\n")
-            print(f"[Epoch {epoch}] Loss: {loss.item():.4f}")
+            if rank == 0:
+                log_file.write(f"Epoch {epoch} | Loss: {loss.item():.4f}\n")
+                print(f"[Epoch {epoch}] Loss: {loss.item():.4f}")
     cleanup()
 
 def run_auto_ddlsim():
@@ -59,8 +61,7 @@ def run_auto_ddlsim():
     log_name = datetime.now().strftime("ddlsim_%Y%m%d_%H%M%S.log")
     log_path = os.path.join("logs", log_name)
 
-    with open(log_path, "w") as log_file:
-        mp.spawn(train, args=(world_size, log_file), nprocs=world_size, join=True)
+    mp.spawn(train, args=(world_size, log_path), nprocs=world_size, join=True)
 
 if __name__ == "__main__":
     run_auto_ddlsim()
