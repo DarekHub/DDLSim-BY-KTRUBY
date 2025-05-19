@@ -6,7 +6,7 @@ torchaudio>=0.13.0
 # === Distributed Systems & Communication ===
 mpi4py>=3.1.4          # MPI interface for Python
 pyzmq>=25.1.0          # ZeroMQ bindings
-zeromq>=4.3.4          # Messaging layer
+#zeromq>=4.3.4          # Messaging layer
 grpcio>=1.54.0         # Optional: gRPC for microservice simulation
 
 # === Simulation Tools ===
