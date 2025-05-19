@@ -21,15 +21,11 @@ import torch.multiprocessing as mp
 from torch import nn, optim
 from torch.nn.parallel import DistributedDataParallel as DDP
 
-# Optional visualization and tracking tools
-try:
-    from tqdm import tqdm
-except ImportError:
-    tqdm = lambda x: x
+from tqdm import tqdm  # Assume installed
 
 
-# === Logging Setup ===
-def init_logging(rank):
+def init_logging(rank: int) -> None:
+    """Initialize logging for each node with file handler."""
     logging.basicConfig(
         filename=f"ddlsim_node{rank}.log",
         level=logging.INFO,
@@ -38,43 +34,46 @@ def init_logging(rank):
     )
 
 
-# === Distributed Setup and Cleanup ===
-def setup(rank, world_size):
+def setup(rank: int, world_size: int) -> None:
+    """Set up distributed environment and logging."""
     os.environ["MASTER_ADDR"] = "127.0.0.1"
     os.environ["MASTER_PORT"] = "29500"
     dist.init_process_group("gloo", rank=rank, world_size=world_size)
     init_logging(rank)
-    logging.info(f"Initialized node {rank}/{world_size}")
+    logging.info("Initialized node %d/%d", rank, world_size)
 
 
-def cleanup():
+def cleanup() -> None:
+    """Clean up distributed environment."""
     dist.destroy_process_group()
 
 
-# === Simulate Network Behavior ===
-def simulate_network(epoch, rank):
+def simulate_network(epoch: int, rank: int) -> bool:
+    """Simulate network latency and possible packet drop."""
     latency = random.uniform(0.01, 0.25)
     time.sleep(latency)
     if random.random() < 0.03:
-        logging.warning(f"Epoch {epoch}: Packet dropped on node {rank}")
+        logging.warning("Epoch %d: Packet dropped on node %d", epoch, rank)
         return False
     return True
 
 
-# === Define Neural Model (Extendable) ===
 class SimpleModel(nn.Module):
+    """A simple feedforward neural network model."""
+
     def __init__(self):
-        super(SimpleModel, self).__init__()
+        super().__init__()
         self.fc1 = nn.Linear(10, 50)
         self.relu = nn.ReLU()
         self.fc2 = nn.Linear(50, 10)
 
-    def forward(self, x):
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        """Forward pass."""
         return self.fc2(self.relu(self.fc1(x)))
 
 
-# === Training Logic ===
-def train_node(rank, world_size):
+def train_node(rank: int, world_size: int) -> None:
+    """Training process for each distributed node."""
     setup(rank, world_size)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -84,7 +83,7 @@ def train_node(rank, world_size):
     optimizer = optim.Adam(ddp_model.parameters(), lr=0.001)
     criterion = nn.MSELoss()
 
-    logging.info(f"Training started on device: {device}")
+    logging.info("Training started on device: %s", device)
 
     for epoch in range(1, 11):
         if not simulate_network(epoch, rank):
@@ -99,20 +98,20 @@ def train_node(rank, world_size):
         loss.backward()
         optimizer.step()
 
-        logging.info(f"[Epoch {epoch}] Loss: {loss.item():.5f}")
+        logging.info("[Epoch %d] Loss: %.5f", epoch, loss.item())
         if rank == 0:
-            print(f"[Node {rank}] Epoch {epoch} | Loss: {loss.item():.5f}")
+            print("[Node %d] Epoch %d | Loss: %.5f", rank, epoch, loss.item())
 
     logging.info("Training completed.")
     cleanup()
 
 
-# === Main Entry ===
-def main():
-    WORLD_SIZE = 4  # Number of nodes
-    print(f"[{datetime.now()}] Launching DDLSim with {WORLD_SIZE} nodes...")
-    mp.spawn(train_node, args=(WORLD_SIZE,), nprocs=WORLD_SIZE, join=True)
-    print(f"[{datetime.now()}] Simulation complete.")
+def main() -> None:
+    """Main entry point for launching the distributed simulation."""
+    world_size = 4  # Number of nodes
+    print("[%s] Launching DDLSim with %d nodes..." % (datetime.now(), world_size))
+    mp.spawn(train_node, args=(world_size,), nprocs=world_size, join=True)
+    print("[%s] Simulation complete." % datetime.now())
 
 
 if __name__ == "__main__":
