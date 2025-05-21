@@ -1,1 +1,7 @@
-Add training log for node0 - node1 - node01
+ktruby@node0:~/my_ai_devDarek_venv/DDLSim-BY-KTRUBY/logs$ cat ddlsim_20250521_164640.log_node0.log
+Epoch 1 | Loss: 1.3668
+Epoch 2 | Loss: 1.4021
+Epoch 3 | Loss: 1.3476
+Epoch 4 | Loss: 1.3081
+Epoch 5 | Loss: 1.3931
+ktruby@node0:~/my_ai_devDarek_venv/DDLSim-BY-KTRUBY/logs$
