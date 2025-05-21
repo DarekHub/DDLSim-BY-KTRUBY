@@ -31,7 +31,7 @@ Epoch 5 | Loss: 1.3931
 | 📅 Planned Date | Target Nodes | Purpose                   | Status     |
 |----------------|--------------|----------------------------|------------|
 | 2025-05-24     | 64 (remote)   | Benchmark GPU simulations  | 🔜 Scheduled |
-| 2025-06-01     | 16 (iLabt)   | Full-scale model test      | 🔜 Planned   |
+| 2026-12-30     | 16 (iLabt)   | Full-scale model test      | 🔜 Planned   |
 
 ---
 
