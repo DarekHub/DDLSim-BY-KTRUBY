@@ -12,7 +12,7 @@ Welcome to the official execution log of **DDLSim-BY-KTRUBY**, where each distri
 
 | 📅 Date       | ⚙️ Mode          | 🧠 Nodes | 🔁 Epochs | 📂 Logs                                          | ✅ Status  | 📝 Notes                           |
 |---------------|------------------|----------|------------|--------------------------------------------------|------------|------------------------------------|
-| 2025-05-21    | Local Test (CPU) | 2        | 5          | `logs/ddlsim_20250521_164640.log_node[0-1].log` | ✅ Success | First complete cycle on node0/1   |
+| 2025-05-21    | Local Test (CPU) | 30        | 5          | `logs/ddlsim_20250521_164640.log_node[0-1].log` | ✅ Success | First complete cycle on node0/1   |
 
 ---
 
@@ -30,7 +30,7 @@ Epoch 5 | Loss: 1.3931
 
 | 📅 Planned Date | Target Nodes | Purpose                   | Status     |
 |----------------|--------------|----------------------------|------------|
-| 2025-05-24     | 8 (remote)   | Benchmark GPU simulations  | 🔜 Scheduled |
+| 2025-05-24     | 64 (remote)   | Benchmark GPU simulations  | 🔜 Scheduled |
 | 2025-06-01     | 16 (iLabt)   | Full-scale model test      | 🔜 Planned   |
 
 ---
@@ -50,6 +50,4 @@ logs/ddlsim_YYYYMMDD_HHMMSS.log_nodeX.log
 ---
 
 > **This file is automatically updated after each official cycle, and will be part of the final annual report.**
-> git add status.md
-git commit -m "Add status.md log file with latest run summary"
-git push
+> 
