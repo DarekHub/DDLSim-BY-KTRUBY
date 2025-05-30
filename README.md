@@ -120,3 +120,32 @@ Brown University & Broward College
 ---
 
 > DDLSim bridges the gap between theory and real-world AI infrastructure challenges, empowering global researchers to simulate, test, and optimize distributed systems at no cost.
+
+---
+
+## 📅 Automated Daily Training & Logging
+
+![Automation Badge](https://img.shields.io/badge/automation-enabled-brightgreen?style=flat-square&logo=python)
+
+Our system supports a **fully automated pipeline** for daily training and reporting.  
+All training logs and summary reports are auto-generated and pushed to GitHub every day.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/DarekHub/DDLSim-BY-KTRUBY/main/docs/assets/daily_automation_example.png" width="80%" alt="Daily Training Automation Diagram">
+</p>
+
+### 🔁 `daily_pipeline.sh` Includes:
+
+- Running training using latest code
+- Capturing logs with timestamps (e.g. `logs/ddlsim_2025-05-30.log`)
+- Generating Markdown report (`report_*.md`)
+- Git commit + push to keep the repository updated
+
+---
+
+### 🕑 How to Activate It (via `cron`):
+
+To schedule daily execution at **2:00 AM**, run:
+
+```bash
+crontab -e
