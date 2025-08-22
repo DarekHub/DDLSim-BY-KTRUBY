@@ -1,8 +1,36 @@
 
+<!-- ========================= -->
+<!--      DDLSim-BY-KTRUBY     -->
+<!-- ========================= -->
 
+<p align="center">
+  <!-- Temporary placeholder logo (replace later with your own file if you wish) -->
+  <img src="https://placehold.co/240x240/111111/FFFFFF?text=DDLSim" alt="DDLSim placeholder logo" width="160" />
+</p>
+
+<h1 align="center">DDLSim-BY-KTRUBY</h1>
+<p align="center"><i>A high-level concept for a Distributed Deep Learning Infrastructure Simulator</i></p>
+
+<p align="center">
+  <!-- Ready-made badges (no local images required) -->
+  <img alt="License" src="https://img.shields.io/badge/License-MIT-2ea44f?logo=open-source-initiative&logoColor=white">
+  <img alt="Open Source" src="https://img.shields.io/badge/Open%20Source-Yes-2962FF?logo=github&logoColor=white">
+  <img alt="Status" src="https://img.shields.io/badge/Status-Conceptual-orange?logo=sparkles&logoColor=white">
+  <img alt="Docs" src="https://img.shields.io/badge/Docs-Readable-1f6feb?logo=readthedocs&logoColor=white">
+  <img alt="Community" src="https://img.shields.io/badge/Contributions-Welcome-8A2BE2?logo=people&logoColor=white">
+</p>
+
+<!-- Visual tech strip — generic logos via shields.io (no code implied) -->
+<p align="center">
+  <img src="https://img.shields.io/badge/Design-Visual_Guide-111111?logo=figma&logoColor=white" alt="Visual Guide">
+  <img src="https://img.shields.io/badge/Storyboards-Ready-333333?logo=book&logoColor=white" alt="Storyboards">
+  <img src="https://img.shields.io/badge/Diagrams-High_Level-555555?logo=diagram&logoColor=white" alt="Diagrams">
+</p>
+
+---
 # **DDLSim-BY-KTRUBY**  
 _Distributed Deep Learning Infrastructure Simulator_  
-Created by **Kaitlyn Brishae Truby** | Brown University & Broward College
+Created by **Kaitlyn Brishae Truby** | Brown University & Broward & *ALCF*
 
 ---
 
@@ -142,10 +170,3 @@ All training logs and summary reports are auto-generated and pushed to GitHub ev
 - Git commit + push to keep the repository updated
 
 ---
-
-### 🕑 How to Activate It (via `cron`):
-
-To schedule daily execution at **2:00 AM**, run:
-
-```bash
-crontab -e
